@@ -89,20 +89,11 @@ class Store {
   }
 
   @observable isClicked = false;
-  get sortedVehicle() {
+  @computed get sortedVehicle() {
     return this.vehicleMake.slice().sort((a, b) => {
       return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
     });
   }
-
-  currentPage = 1;
-  carsPerPage = 2;
-  indexOfLastCar = this.currentPage * this.carsPerPage;
-  indexOfFirstCar = this.indexOfLastCar - this.carsPerPage;
-  currentCars = this.vehicleMake.slice(
-    this.indexOfFirstCar,
-    this.indexOfLastCar
-  );
 }
 
 const store = new Store();

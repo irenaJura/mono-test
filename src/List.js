@@ -3,36 +3,43 @@ import { observer } from "mobx-react";
 
 @observer
 class List extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentPage: 1
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
   filter(e) {
     this.props.store.filter = e.target.value;
   }
   toggleSort() {
     return (this.props.store.isClicked = !this.props.store.isClicked);
   }
-  handleClick(number) {
-    return (this.props.store.currentPage = number);
+
+  handleClick(e) {
+    this.setState({ currentPage: e.target.id });
   }
 
   render() {
-    const { filter, currentCars, isClicked } = this.props.store;
-    const currentCarsList = currentCars.map(vehicle => (
+    const { filter, filteredVehicle, isClicked } = this.props.store;
+    const currentCarsList = filteredVehicle.map(vehicle => (
       <li key={vehicle.id}>
         <img src={require(`./${vehicle.src}`)} alt={vehicle.name} width={400} />
         <p>{vehicle.name}</p>
       </li>
     ));
 
+    const carsPerPage = 2;
+    const indexOfLastCar = this.state.currentPage * carsPerPage;
+    const indexOfFirstCar = indexOfLastCar - carsPerPage;
+    const currentCars = currentCarsList.slice(indexOfFirstCar, indexOfLastCar);
+
     const pageNumbers = [];
-    for (
-      let i = 1;
-      i <=
-      Math.ceil(
-        this.props.store.vehicleMake.length / this.props.store.carsPerPage
-      );
-      i++
-    ) {
+    for (let i = 1; i <= Math.ceil(filteredVehicle.length / carsPerPage); i++) {
       pageNumbers.push(i);
     }
+
     return (
       <>
         <input
@@ -47,15 +54,11 @@ class List extends React.Component {
           value={isClicked ? "Random order" : "Sort alphabetically"}
           onClick={this.toggleSort.bind(this)}
         />
-        <ul>{currentCarsList}</ul>
+        <ul>{currentCars}</ul>
         <ul>
           {pageNumbers.map(number => {
             return (
-              <button
-                key={number}
-                id={number}
-                onClick={() => this.handleClick(number)}
-              >
+              <button key={number} id={number} onClick={this.handleClick}>
                 {number}
               </button>
             );
