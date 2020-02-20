@@ -49,10 +49,16 @@ input.button {
   border-radius: 10px;
 }
 
-ul > button {
+button {
   padding: 10px 20px;
 }
 
 p {
   text-align: center;
+}
+.page-item {
+  background-color: grey;
+}
+.page-item .active {
+  background-color: red;
 }
