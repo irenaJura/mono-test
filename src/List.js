@@ -1,53 +1,48 @@
-import React from "react";
-import { observer } from "mobx-react";
+import React, { Component } from "react";
+import PaginationComponent from "./PaginationComponent";
+import Car from "./Car";
+import { observer, inject } from "mobx-react";
+import pagination from "./Pagination";
 
+@inject("store", "pagination")
 @observer
-class List extends React.Component {
-  filter(e) {
-    this.props.store.filter = e.target.value;
-  }
-  toggleSort() {
-    return (this.props.store.isClicked = !this.props.store.isClicked);
-  }
-
-  handleClick(e) {
-    this.props.pagination.setPage(e.target.id);
-  }
-
+class List extends Component {
+  updateSeachText = (e) => {
+    this.props.store.searchTerm(e.target.value);
+    pagination.currentPage = 1;
+  };
   render() {
-    const { filter, isClicked } = this.props.store;
+    const { filter, filteredVehicle, isSorted, toggleSort } = this.props.store;
+    const { firstIndex, lastIndex } = this.props.pagination;
 
-    const list = this.props.pagination.currentCars.map(vehicle => (
-      <li key={vehicle.id}>
-        <img src={require(`./${vehicle.src}`)} alt={vehicle.name} width={400} />
-        <p>{vehicle.name}</p>
-      </li>
-    ));
-
-    const pageNum = this.props.pagination.pageNumbers.map((num, i) => {
-      return (
-        <button key={i} id={num} onClick={this.handleClick.bind(this)}>
-          {num}
-        </button>
-      );
-    });
+    const currentCars = filteredVehicle.slice(firstIndex, lastIndex);
 
     return (
       <>
         <input
           className="filter"
           value={filter}
-          onChange={this.filter.bind(this)}
-          placeholder="Search car brand"
+          onChange={this.updateSeachText}
+          placeholder="Search vehicles"
         />
         <input
           className="button"
           type="button"
-          value={isClicked ? "Random order" : "Sort alphabetically"}
-          onClick={this.toggleSort.bind(this)}
+          value={isSorted ? "Random order" : "Sort alphabetically"}
+          onClick={toggleSort}
         />
-        <ul>{list}</ul>
-        <p>{pageNum}</p>
+        <ul>
+          {currentCars.length > 0 ? (
+            currentCars.map((vehicle) => (
+              <li key={vehicle.id}>
+                <Car vehicle={vehicle} />
+              </li>
+            ))
+          ) : (
+            <p>Sorry, no vehicles found. Please, try again...</p>
+          )}
+        </ul>
+        <PaginationComponent currentCars={currentCars} />
       </>
     );
   }

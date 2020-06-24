@@ -1,30 +1,21 @@
-import { action, computed, observable } from "mobx";
-import store from "./Store";
+import { computed, observable, action } from "mobx";
+// import store from "./Store";
 
 class Pagination {
   @observable currentPage = 1;
-  @observable carsPerPage = 2;
-  @observable IndexOfLast = this.currentPage * this.carsPerPage;
-  @observable IndexOfFirst = this.IndexOfLast - this.carsPerPage;
+  @observable carsPerPage = 3;
 
-  @computed get currentCars() {
-    return store.filteredVehicle.slice(this.IndexOfFirst, this.IndexOfLast);
+  @computed get lastIndex() {
+    return this.currentPage * this.carsPerPage;
   }
 
-  @action setPage(x) {
-    return (this.currentPage = x);
+  @computed get firstIndex() {
+    return this.lastIndex - this.carsPerPage;
   }
 
-  @computed get pageNumbers() {
-    const pageNumbers = [];
-    for (
-      let i = 1;
-      i <= Math.ceil(store.filteredVehicle.length / this.carsPerPage);
-      i++
-    ) {
-      pageNumbers.push(i);
-    }
-    return pageNumbers;
+  @action
+  setPage(num) {
+    this.currentPage = num;
   }
 }
 

@@ -1,14 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "mobx-react";
+import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
-import List from "./List";
+import App from "./App";
 import store from "./Store";
 import pagination from "./Pagination";
 
 ReactDOM.render(
-  <List store={store} pagination={pagination} />,
+  <BrowserRouter>
+    <Provider store={store} pagination={pagination}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
   document.getElementById("root")
 );
 

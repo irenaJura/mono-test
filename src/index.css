@@ -49,16 +49,17 @@ input.button {
   border-radius: 10px;
 }
 
-button {
-  padding: 10px 20px;
-}
-
 p {
   text-align: center;
 }
 .page-item {
-  background-color: grey;
+  background-color: #ffeeff;
+  padding: 10px 20px;
 }
-.page-item .active {
-  background-color: red;
+.active {
+  background-color: #666;
+  color: #ffeeff;
+}
+.models h2 {
+  text-align: center;
 }
