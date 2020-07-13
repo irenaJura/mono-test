@@ -41,6 +41,7 @@ input.filter {
   padding: 6px;
   border-radius: 10px;
   width: 250px;
+  height: 30px;
 }
 
 input.button {
@@ -49,17 +50,41 @@ input.button {
   border-radius: 10px;
 }
 
+.dropdown-container {
+  align-self: center;
+}
+
+.dropdown {
+  width: 80px;
+  height: 30px;
+}
+
+option {
+  zoom: 1.4;
+}
+
 p {
   text-align: center;
 }
+
 .page-item {
   background-color: #ffeeff;
   padding: 10px 20px;
 }
+
 .active {
   background-color: #666;
   color: #ffeeff;
 }
+
 .models h2 {
   text-align: center;
+}
+
+.edit-btn {
+  margin: 20px;
+  width: 150px;
+  align-self: center;
+  padding: 10px;
+  border-radius: 10px;
 }

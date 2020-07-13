@@ -1,5 +1,4 @@
 import { computed, observable, action } from "mobx";
-// import store from "./Store";
 
 class Pagination {
   @observable currentPage = 1;

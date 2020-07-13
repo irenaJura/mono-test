@@ -1,5 +1,5 @@
 import { computed, observable, action } from "mobx";
-import pagination from "./Pagination";
+import pagination from "./PaginationStore";
 
 class Store {
   @observable vehicleMake = [
@@ -248,11 +248,40 @@ class Store {
     },
   ];
 
+  // deleting
   @action
   deleteMake(id) {
     this.vehicleMake = this.vehicleMake.filter((make) => make.id !== id);
   }
 
+  @action
+  deleteModel(id) {
+    this.vehicleMake.forEach((make) => {
+      make.vehicleModel = make.vehicleModel.filter((m) => m.id !== id);
+    });
+  }
+
+  // editing
+  @observable currentMake = { id: null, name: "", editing: false };
+
+  @action
+  editName(make) {
+    this.currentMake = { id: make.id, name: make.name, editing: true };
+  }
+
+  @action
+  updateMake = (id) => {
+    this.vehicleMake.map((make) =>
+      make.id === id
+        ? this.currentMake.name !== ""
+          ? (make.name = this.currentMake.name)
+          : null
+        : make.name
+    );
+    this.currentMake.editing = false;
+  };
+
+  // filtering
   @observable filter = "";
 
   @action
@@ -262,26 +291,33 @@ class Store {
 
   @computed get filteredVehicle() {
     const matches = new RegExp(this.filter, "i");
-    return this.isSorted
+    return this.isSortedAZ
       ? this.sortedVehicle.filter(
           (vehicle) => matches.test(vehicle.name) || matches.test(vehicle.abrv)
         )
-      : this.vehicleMake.filter(
+      : this.reverseSortedVehicle.filter(
           (vehicle) => matches.test(vehicle.name) || matches.test(vehicle.abrv)
         );
   }
 
-  @observable isSorted = false;
+  // sorting
+  @observable isSortedAZ = true;
 
   @action
   toggleSort = () => {
-    this.isSorted = !this.isSorted;
+    this.isSortedAZ = !this.isSortedAZ;
     return (pagination.currentPage = 1);
   };
 
   @computed get sortedVehicle() {
     return this.vehicleMake.slice().sort((a, b) => {
       return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+    });
+  }
+
+  @computed get reverseSortedVehicle() {
+    return this.vehicleMake.slice().sort((a, b) => {
+      return b.name < a.name ? -1 : b.name > a.name ? 1 : 0;
     });
   }
 }

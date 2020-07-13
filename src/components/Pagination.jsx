@@ -3,10 +3,12 @@ import { inject, observer } from "mobx-react";
 
 @inject("store", "pagination")
 @observer
-class PaginationComponent extends Component {
+class Pagination extends Component {
+
   handleClick = (number) => {
     this.props.pagination.setPage(number);
   };
+
   render() {
     const { filteredVehicle } = this.props.store;
     const { carsPerPage, currentPage } = this.props.pagination;
@@ -26,8 +28,9 @@ class PaginationComponent extends Component {
         {number}
       </button>
     ));
+
     return <p>{filteredVehicle.length < carsPerPage + 1 ? null : numbers}</p>;
   }
 }
 
-export default PaginationComponent;
+export default Pagination;

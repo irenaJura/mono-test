@@ -6,12 +6,12 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
 import App from "./App";
-import store from "./Store";
-import pagination from "./Pagination";
+import Store from "./stores/Store";
+import PaginationStore from "./stores/PaginationStore";
 
 ReactDOM.render(
   <BrowserRouter>
-    <Provider store={store} pagination={pagination}>
+    <Provider store={Store} pagination={PaginationStore}>
       <App />
     </Provider>
   </BrowserRouter>,
