@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, B.linkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -31,27 +31,9 @@ li {
   text-align: center;
 }
 
-li > p {
-  margin-top: 0;
-}
-
-input.filter {
-  align-self: center;
-  margin: 20px 0;
-  padding: 6px;
-  border-radius: 10px;
-  width: 250px;
-  height: 30px;
-}
-
-input.button {
-  align-self: center;
-  padding: 6px;
-  border-radius: 10px;
-}
-
 .dropdown-container {
   align-self: center;
+  margin: 0 0 20px 0;
 }
 
 .dropdown {
@@ -60,7 +42,7 @@ input.button {
 }
 
 option {
-  zoom: 1.4;
+  zoom: 1.1;
 }
 
 p {
@@ -68,12 +50,14 @@ p {
 }
 
 .page-item {
-  background-color: #ffeeff;
+  background-color: #fff;
+  color: #007bff;
+  border: 1px solid #dee2e6;
   padding: 10px 20px;
 }
 
 .active {
-  background-color: #666;
+  background-color: #007bff;
   color: #ffeeff;
 }
 
@@ -87,4 +71,9 @@ p {
   align-self: center;
   padding: 10px;
   border-radius: 10px;
+}
+
+.searchBar {
+  justify-content: center;
+  margin: 20px 0;
 }

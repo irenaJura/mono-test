@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Navigation from "./Navigation";
 import { observer, inject } from "mobx-react";
 
 @inject("store")
@@ -11,25 +12,23 @@ class VehicleModel extends Component {
     const { vehicleMake } = this.props.store;
     const urlParams = this.props.match.params;
     return (
-      <div className="models">
-        <h2>{urlParams.name}</h2>
-        <ul>
-          {vehicleMake.map(make => make.vehicleModel
-            .filter((model) => model.makeId === parseInt(urlParams.id))
-            .map(m => (
-              <li key={m.id}>
-                <img src={require(`../${m.src}`)} alt={m.name} width={400} />
-                <p>{m.name}</p>
-                <input
-                  type="button"
-                  value="Delete"
-                  onClick={() => this.handleDelete(m)}
-                />
-              </li>
-            ))
-          )}
-        </ul>
-      </div>
+      <>
+        <Navigation />
+        <div className="models">
+          <h2>{urlParams.name}</h2>
+          <ul>
+            {vehicleMake.map(make => make.vehicleModel
+              .filter((model) => model.makeId === parseInt(urlParams.id))
+              .map(m => (
+                <li key={m.id}>
+                  <img src={require(`../${m.src}`)} alt={m.name} width={400} />
+                  <h4>{m.name}</h4>
+                </li>
+              ))
+            )}
+          </ul>
+        </div>
+      </>
     );
   }
 }

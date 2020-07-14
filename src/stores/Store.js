@@ -64,7 +64,7 @@ class Store {
     {
       id: 3,
       name: "Audi",
-      abrv: "",
+      abrv: "Audi",
       src: "images/audi.jpg",
       vehicleModel: [
         {
@@ -86,7 +86,7 @@ class Store {
     {
       id: 4,
       name: "Ferrari",
-      abrv: "",
+      abrv: "Ferrari",
       src: "images/ferrari.jpg",
       vehicleModel: [
         {
@@ -123,7 +123,7 @@ class Store {
     {
       id: 6,
       name: "Peugeot",
-      abrv: "",
+      abrv: "Peugeot",
       src: "images/peugeot.jpg",
       vehicleModel: [
         {
@@ -138,7 +138,7 @@ class Store {
     {
       id: 7,
       name: "Renault",
-      abrv: "",
+      abrv: "Renault",
       src: "images/renault.jpg",
       vehicleModel: [
         {
@@ -160,7 +160,7 @@ class Store {
     {
       id: 8,
       name: "Alfa Romeo",
-      abrv: "alfa",
+      abrv: "Alfa",
       src: "images/alfa.jpg",
       vehicleModel: [
         {
@@ -175,7 +175,7 @@ class Store {
     {
       id: 9,
       name: "Fiat",
-      abrv: "",
+      abrv: "Fiat",
       src: "images/fiat.jpg",
       vehicleModel: [
         {
@@ -190,7 +190,7 @@ class Store {
     {
       id: 10,
       name: "Ford",
-      abrv: "",
+      abrv: "Ford",
       src: "images/ford.jpg",
       vehicleModel: [
         {
@@ -212,7 +212,7 @@ class Store {
     {
       id: 11,
       name: "Hyundai",
-      abrv: "",
+      abrv: "Hyundai",
       src: "images/hyundai.jpg",
       vehicleModel: [
         {
@@ -227,7 +227,7 @@ class Store {
     {
       id: 12,
       name: "Suzuki",
-      abrv: "",
+      abrv: "Suzuki",
       src: "images/suzuki.jpg",
       vehicleModel: [
         {
@@ -248,37 +248,48 @@ class Store {
     },
   ];
 
-  // deleting
+  // adding a vehicle
+  @action
+  addVehicle(vehicle) {
+    vehicle.id = this.vehicleMake.length + 1;
+    this.vehicleMake = [...this.vehicleMake, vehicle];
+  }
+
+  @observable initialFormState = { id: null, name: "", abrv: "", src: "" };
+
+  // deleting a vehicle
   @action
   deleteMake(id) {
     this.vehicleMake = this.vehicleMake.filter((make) => make.id !== id);
   }
 
-  @action
-  deleteModel(id) {
-    this.vehicleMake.forEach((make) => {
-      make.vehicleModel = make.vehicleModel.filter((m) => m.id !== id);
-    });
-  }
-
-  // editing
-  @observable currentMake = { id: null, name: "", editing: false };
+  // editing a vehicle
+  @observable editing = false;
+  @observable currentVehicle = { id: null, name: "", abrv: "", src: "" };
 
   @action
-  editName(make) {
-    this.currentMake = { id: make.id, name: make.name, editing: true };
-  }
+  editRow = (vehicle) => {
+    this.editing = true;
+
+    this.currentVehicle = {
+      id: vehicle.id,
+      name: vehicle.name,
+      abrv: vehicle.abrv,
+      src: vehicle.src,
+    };
+  };
 
   @action
   updateMake = (id) => {
     this.vehicleMake.map((make) =>
       make.id === id
-        ? this.currentMake.name !== ""
-          ? (make.name = this.currentMake.name)
+        ? this.currentVehicle.name !== "" && this.currentVehicle.abrv !== ""
+          ? (make.name = this.currentVehicle.name) &&
+            (make.abrv = this.currentVehicle.abrv)
           : null
         : make.name
     );
-    this.currentMake.editing = false;
+    this.currentVehicle.editing = false;
   };
 
   // filtering

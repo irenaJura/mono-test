@@ -4,7 +4,6 @@ import { inject, observer } from "mobx-react";
 @inject("store", "pagination")
 @observer
 class Pagination extends Component {
-
   handleClick = (number) => {
     this.props.pagination.setPage(number);
   };

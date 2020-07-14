@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Navigation from "./Navigation";
 import Filter from "./Filter";
 import Sort from "./Sort";
 import CarList from "./CarList";
@@ -16,6 +17,7 @@ class Layout extends Component {
 
     return (
       <>
+        <Navigation />
         <Filter />
         <Sort />
         <CarList currentCars={currentCars} />

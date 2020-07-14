@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { observer, inject } from "mobx-react";
-import EditForm from "./EditForm";
 
 @inject("store")
 @observer
@@ -17,24 +16,13 @@ class Car extends Component {
     return (
       <>
         <Link to={vehicle.id + "/" + vehicle.name}>
-          <img
+          {vehicle.src && <img
             src={require(`../${vehicle.src}`)}
             alt={vehicle.name}
             width={400}
-          />
-          <p>{vehicle.name}</p>
+          />}
         </Link>
-        <input
-          type="button"
-          value="Delete"
-          onClick={() => this.handleDelete(vehicle)}
-        />
-        <input
-          type="button"
-          value="Edit"
-          onClick={() => this.handleEdit(vehicle)}
-        />
-        {this.props.store.currentMake.editing && <EditForm vehicle={vehicle} />}
+        <h4 className="link">{vehicle.name}</h4>
       </>
     );
   }
