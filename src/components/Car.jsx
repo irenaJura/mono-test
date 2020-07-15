@@ -13,17 +13,18 @@ class Car extends Component {
   };
   render() {
     const { vehicle } = this.props;
+    console.log(vehicle.src);
     return (
-      <>
+      <div className="car-card">
         <Link to={vehicle.id + "/" + vehicle.name}>
-          {vehicle.src && <img
-            src={require(`../${vehicle.src}`)}
+          <img
+            src={`/${vehicle.src}`}
             alt={vehicle.name}
-            width={400}
-          />}
+            width={360}
+          />
         </Link>
-        <h4 className="link">{vehicle.name}</h4>
-      </>
+        <h4 className="name">{vehicle.name}</h4>
+      </div>
     );
   }
 }

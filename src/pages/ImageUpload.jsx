@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Form } from "react-bootstrap";
 import { inject, observer } from 'mobx-react';
+// https://malcoded.com/posts/react-file-upload/
+// https://github.com/udacity/reactnd-contacts-complete/blob/master/src/ImageInput.js
 
 @inject("store")
 @observer

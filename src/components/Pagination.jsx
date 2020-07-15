@@ -28,7 +28,7 @@ class Pagination extends Component {
       </button>
     ));
 
-    return <p>{filteredVehicle.length < carsPerPage + 1 ? null : numbers}</p>;
+    return <div className="center">{filteredVehicle.length < carsPerPage + 1 ? null : numbers}</div>;
   }
 }
 

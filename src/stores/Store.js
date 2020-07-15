@@ -285,7 +285,8 @@ class Store {
       make.id === id
         ? this.currentVehicle.name !== "" && this.currentVehicle.abrv !== ""
           ? (make.name = this.currentVehicle.name) &&
-            (make.abrv = this.currentVehicle.abrv)
+            (make.abrv = this.currentVehicle.abrv) &&
+            (make.src = this.currentVehicle.src)
           : null
         : make.name
     );

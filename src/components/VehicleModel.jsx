@@ -19,12 +19,20 @@ class VehicleModel extends Component {
           <ul>
             {vehicleMake.map(make => make.vehicleModel
               .filter((model) => model.makeId === parseInt(urlParams.id))
-              .map(m => (
-                <li key={m.id}>
-                  <img src={require(`../${m.src}`)} alt={m.name} width={400} />
-                  <h4>{m.name}</h4>
-                </li>
-              ))
+              .map(m => {
+                return (
+                  <li key={m.id} >
+                    <div className="car-card">
+                      <img src={`/${m.src}`} alt={m.name} width={360} />
+                      <h4 className="name">{m.name}</h4>
+                    </div>
+                  </li>
+
+                )
+
+              }
+
+              )
             )}
           </ul>
         </div>
