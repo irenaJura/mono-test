@@ -283,7 +283,9 @@ class Store {
   updateMake = (id) => {
     this.vehicleMake.map((make) =>
       make.id === id
-        ? this.currentVehicle.name !== "" && this.currentVehicle.abrv !== ""
+        ? this.currentVehicle.name !== "" &&
+          this.currentVehicle.abrv !== "" &&
+          this.currentVehicle.src !== ""
           ? (make.name = this.currentVehicle.name) &&
             (make.abrv = this.currentVehicle.abrv) &&
             (make.src = this.currentVehicle.src)

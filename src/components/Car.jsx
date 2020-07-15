@@ -13,7 +13,6 @@ class Car extends Component {
   };
   render() {
     const { vehicle } = this.props;
-    console.log(vehicle.src);
     return (
       <div className="car-card">
         <Link to={vehicle.id + "/" + vehicle.name}>
