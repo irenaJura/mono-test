@@ -265,13 +265,13 @@ class Store {
 
   // editing a vehicle
   @observable editing = false;
-  @observable currentVehicle = { id: null, name: "", abrv: "", src: "" };
+  // @observable currentVehicle = { id: null, name: "", abrv: "", src: "" };
 
   @action
   editRow = (vehicle) => {
     this.editing = true;
 
-    this.currentVehicle = {
+    this.initialFormState = {
       id: vehicle.id,
       name: vehicle.name,
       abrv: vehicle.abrv,
@@ -283,16 +283,15 @@ class Store {
   updateMake = (id) => {
     this.vehicleMake.map((make) =>
       make.id === id
-        ? this.currentVehicle.name !== "" &&
-          this.currentVehicle.abrv !== "" &&
-          this.currentVehicle.src !== ""
-          ? (make.name = this.currentVehicle.name) &&
-            (make.abrv = this.currentVehicle.abrv) &&
-            (make.src = this.currentVehicle.src)
+        ? this.initialFormState.name !== "" &&
+          this.initialFormState.abrv !== "" &&
+          this.initialFormState.src !== ""
+          ? (make.name = this.initialFormState.name) &&
+            (make.abrv = this.initialFormState.abrv) &&
+            (make.src = this.initialFormState.src)
           : null
         : make.name
     );
-    this.currentVehicle.editing = false;
   };
 
   // filtering
