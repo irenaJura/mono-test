@@ -39,7 +39,7 @@ class AddVehicleForm extends Component {
                     />
                 </Form.Group>
                 <ImageUpload />
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" style={{ marginTop: 10 }}>
                     Submit
                 </Button>
             </Form>
