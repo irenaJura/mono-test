@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import ImageUpload from "../common/ImageUpload";
 import { Form, Button } from "react-bootstrap";
 import { inject, observer } from 'mobx-react';
-import ImageUpload from '../common/ImageUpload';
 import { ToastContainer, toast } from 'react-toastify';
+
 @inject("store")
 @observer
-class EditVehicleForm extends Component {
+class AddVehicleForm extends Component {
     handleInputChange = (e) => {
         const { name, value } = e.target
 
@@ -13,15 +14,9 @@ class EditVehicleForm extends Component {
     }
     handleSubmit = (event) => {
         event.preventDefault();
-        let { initialFormState } = this.props.store;
-
-        this.props.store.updateMake(initialFormState.id, initialFormState)
-        initialFormState = { id: "", name: "", abrv: "", src: "" }
-
         toast.success('successfully submitted')
-    }
-    reset = () => {
-        this.props.store.editing = false;
+
+        this.props.store.addVehicle(this.props.store.initialFormState);
         this.props.store.initialFormState = { id: "", name: "", abrv: "", src: "" }
     }
     render() {
@@ -37,6 +32,7 @@ class EditVehicleForm extends Component {
                     <Form.Group controlId="formBasic">
                         <Form.Label>Vehicle name</Form.Label>
                         <Form.Control
+                            required
                             type="text"
                             name="name"
                             value={name}
@@ -45,33 +41,26 @@ class EditVehicleForm extends Component {
                     <Form.Group controlId="formBasic">
                         <Form.Label>Abbreviation</Form.Label>
                         <Form.Control
+                            required
                             type="text"
                             name="abrv"
                             value={abrv}
                             onChange={this.handleInputChange}
                         />
                     </Form.Group>
-                    {this.props.store.initialFormState.src === ""
-                        ? null :
-                        <img src={src} alt={src} width="200" />}
-                    <ImageUpload src={src} />
+                    <ImageUpload />
                     <Button
-                        variant="primary"
+                        variant="btn btn-primary mt-2"
                         type="submit"
-                        className="mt-2 mr-2">
-                        Submit
-                    </Button>{' '}
-                    <Button
-                        variant="primary" type="submit"
-                        onClick={this.reset}
-                        className="mt-2"
+                        className="btn mt-2"
+                        disabled={(name === "" || abrv === "" || src === "") ? true : false}
                     >
-                        Cancel
-                   </Button>
+                        Submit
+                </Button>
                 </Form>
             </>
         )
     }
 }
 
-export default EditVehicleForm;
+export default AddVehicleForm;

@@ -12,6 +12,7 @@
     "cors": "^2.8.5",
     "customize-cra": "^0.9.1",
     "express": "^4.17.1",
+    "formik": "^2.1.5",
     "mobx": "^5.15.4",
     "mobx-react": "^6.1.8",
     "multer": "^1.4.2",
@@ -24,7 +25,8 @@
     "react-scripts": "3.4.0",
     "react-toastify": "^6.0.8",
     "reactstrap": "^8.5.1",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "yup": "^0.29.1"
   },
   "scripts": {
     "start": "react-app-rewired start",

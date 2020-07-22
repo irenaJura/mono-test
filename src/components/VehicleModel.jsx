@@ -17,22 +17,19 @@ class VehicleModel extends Component {
         <div className="models">
           <h2>{urlParams.name}</h2>
           <ul>
-            {vehicleMake.map(make => make.vehicleModel
-              .filter((model) => model.makeId === parseInt(urlParams.id))
-              .map(m => {
-                return (
-                  <li key={m.id} >
-                    <div className="car-card">
-                      <img src={`/${m.src}`} alt={m.name} width={360} />
-                      <h4 className="name">{m.name}</h4>
-                    </div>
-                  </li>
-
-                )
-
-              }
-
-              )
+            {vehicleMake.map(make => make.vehicleModel ?
+              make.vehicleModel.filter((model) => model.makeId === parseInt(urlParams.id))
+                .map(m => {
+                  return (
+                    <li key={m.id} >
+                      <div className="car-card">
+                        <img src={`/${m.src}`} alt={m.name} width={360} />
+                        <h4 className="name">{m.name}</h4>
+                      </div>
+                    </li>
+                  )
+                })
+              : (<p>Sorry, no models available yet</p>)
             )}
           </ul>
         </div>

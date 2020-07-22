@@ -31,10 +31,10 @@ class VehicleTable extends Component {
                                     <Button
                                         variant="primary"
                                         style={{ marginRight: 5 }}
-                                        onClick={() => { this.props.store.editRow(vehicle) }}>Edit</Button>
+                                        onClick={() => this.props.store.editRow(vehicle)}>Edit</Button>
                                     <Button
                                         variant="danger"
-                                        onClick={() => this.handleDelete(vehicle)}>Delete</Button>
+                                        onClick={() => { if (window.confirm(`Are you sure you want to permanently delete ${vehicle.name}?`)) { this.handleDelete(vehicle) }; }}>Delete</Button>
                                 </td>
                             </tr>
                         ))

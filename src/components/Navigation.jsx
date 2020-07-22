@@ -5,12 +5,12 @@ const Navigation = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <Link className="navbar-brand" to="/">
-                Vehicle Makes
+                Home
             </Link>
             <div className="navbar-nav">
                 <NavLink className="nav-item nav-link" to="/edit">
                     Edit Vehicles
-            </NavLink>
+               </NavLink>
             </div>
         </nav>
 

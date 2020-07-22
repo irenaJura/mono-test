@@ -248,52 +248,6 @@ class Store {
     },
   ];
 
-  // adding a vehicle
-  @action
-  addVehicle(vehicle) {
-    vehicle.id = this.vehicleMake.length + 1;
-    this.vehicleMake = [...this.vehicleMake, vehicle];
-  }
-
-  @observable initialFormState = { id: null, name: "", abrv: "", src: "" };
-
-  // deleting a vehicle
-  @action
-  deleteMake(id) {
-    this.vehicleMake = this.vehicleMake.filter((make) => make.id !== id);
-  }
-
-  // editing a vehicle
-  @observable editing = false;
-  // @observable currentVehicle = { id: null, name: "", abrv: "", src: "" };
-
-  @action
-  editRow = (vehicle) => {
-    this.editing = true;
-
-    this.initialFormState = {
-      id: vehicle.id,
-      name: vehicle.name,
-      abrv: vehicle.abrv,
-      src: vehicle.src,
-    };
-  };
-
-  @action
-  updateMake = (id) => {
-    this.vehicleMake.map((make) =>
-      make.id === id
-        ? this.initialFormState.name !== "" &&
-          this.initialFormState.abrv !== "" &&
-          this.initialFormState.src !== ""
-          ? (make.name = this.initialFormState.name) &&
-            (make.abrv = this.initialFormState.abrv) &&
-            (make.src = this.initialFormState.src)
-          : null
-        : make.name
-    );
-  };
-
   // filtering
   @observable filter = "";
 
@@ -333,6 +287,51 @@ class Store {
       return b.name < a.name ? -1 : b.name > a.name ? 1 : 0;
     });
   }
+
+  // adding a vehicle
+  @observable initialFormState = { id: null, name: "", abrv: "", src: "" };
+
+  @action
+  addVehicle(vehicle) {
+    vehicle.id = this.vehicleMake.length + 1;
+    this.vehicleMake = [...this.vehicleMake, vehicle];
+  }
+
+  // deleting a vehicle
+  @action
+  deleteMake(id) {
+    this.vehicleMake = this.vehicleMake.filter((make) => make.id !== id);
+  }
+
+  // editing a vehicle
+  @observable editing = false;
+
+  @action
+  editRow = (vehicle) => {
+    this.editing = true;
+
+    this.initialFormState = {
+      id: vehicle.id,
+      name: vehicle.name,
+      abrv: vehicle.abrv,
+      src: vehicle.src,
+    };
+  };
+
+  @action
+  updateMake = (id) => {
+    this.vehicleMake.map((make) =>
+      make.id === id
+        ? this.initialFormState.name !== "" &&
+          this.initialFormState.abrv !== "" &&
+          this.initialFormState.src !== ""
+          ? (make.name = this.initialFormState.name) &&
+            (make.abrv = this.initialFormState.abrv) &&
+            (make.src = this.initialFormState.src)
+          : null
+        : make.name
+    );
+  };
 }
 
 const store = new Store();

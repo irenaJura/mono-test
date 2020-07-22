@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navigation from '../components/Navigation';
-import AddVehicleForm from './AddVehicleForm';
-import VehicleTable from './VehicleTable';
+import AddVehicleForm from '../components/AddVehicleForm';
+import VehicleTable from '../components/VehicleTable';
 import EditVehicleForm from '../components/EditVehicleForm';
 import { Container, Row, Col } from "react-bootstrap";
 import { inject, observer } from "mobx-react";

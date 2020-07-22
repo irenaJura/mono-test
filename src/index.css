@@ -81,14 +81,6 @@ option {
   margin: 20px 0;
 }
 
-.edit-btn {
-  margin: 20px;
-  width: 150px;
-  align-self: center;
-  padding: 10px;
-  border-radius: 10px;
-}
-
 .searchBar {
   justify-content: center;
   margin: 20px 0;

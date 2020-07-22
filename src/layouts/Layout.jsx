@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Navigation from "./Navigation";
-import Filter from "./Filter";
-import Sort from "./Sort";
-import CarList from "./CarList";
-import Pagination from "./Pagination";
+import Navigation from "../components/Navigation";
+import Filter from "../components/Filter";
+import Sort from "../components/Sort";
+import CarList from "../components/CarList";
+import Pagination from "../components/Pagination";
 import { observer, inject } from "mobx-react";
 
 @inject("store", "pagination")
