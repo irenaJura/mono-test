@@ -1,68 +1,35 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Info
 
-## Available Scripts
+This is a minimalistic application about vehicle makes and models.
 
-In the project directory, you can run:
+Home page contains a grid of car brands (vehicleMakes), which you may search through and sort by ascending/descending alphabetical order.
 
-### `npm start`
+It also contains pagination.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+There is an edit page with a table of vehiclemakes, and a form for adding a new vehiclemake.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+The existing makes can be edited or deleted.
 
-### `npm test`
+## Technologies
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This project was done with React and bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### `npm run build`
+State management was in great deal implemented with MobX.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I followed these naming conventions: https://github.com/airbnb/javascript/tree/master/react and the folder structure was organized as stated in official React documents: https://reactjs.org/docs/faq-structure.html.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+For the image uploading feature, I used NodeJS and axios to send ajax requests.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I used express to create a server, multer to handle files and Nodemon to monitor the changes and auto-reload.
 
-### `npm run eject`
+On the frontend, I also added react-bootstrap library for styling.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Launch the project
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+After downloading or cloning this project, run npm install to add node modules and then run npm start.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To start the backend server, run nodemon server.js.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
